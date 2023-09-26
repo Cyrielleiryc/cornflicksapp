@@ -14,10 +14,10 @@ puts "Destroying all groups..."
 Group.destroy_all
 puts "Done!"
 puts "Creating groups..."
-Group.create!(name: "un")
-Group.create!(name: "deux")
-Group.create!(name: "trois")
-Group.create!(name: "quatre")
+Group.create!(name: "un", creator: User.all.sample)
+Group.create!(name: "deux", creator: User.all.sample)
+Group.create!(name: "trois", creator: User.all.sample)
+Group.create!(name: "quatre", creator: User.all.sample)
 puts "4 groups are now available!"
 
 # SUBSCRIPTIONS

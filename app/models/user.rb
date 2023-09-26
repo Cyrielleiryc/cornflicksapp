@@ -6,5 +6,7 @@ class User < ApplicationRecord
 
   has_many :subscriptions, dependent: :destroy
   has_many :groups, through: :subscriptions
+  has_many :groups_as_creator, class_name: "Group", foreign_key: :creator_id
+  
   validates :username, presence: true
 end
