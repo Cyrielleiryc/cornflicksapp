@@ -7,18 +7,7 @@
 </div>
 
 <div class="contenu">
-<% if @results %>
-  <h3>Résultats</h3>
-  <ul>
-    <% @results.each do |result| %>
-      <% if result['media_type'] == "movie" %>
-        <li><%= link_to result['title'], movie_path(result['id']) %></li>
-      <% else %>
-        <li><%= link_to result['name'], tv_path(result['id']) %></li>
-      <% end %>
-    <% end %>
-  </ul>
-<% end %>
+<%#= render 'results' %>
 
 <h3>Les films populaires cette semaine</h3>
 <ul>
@@ -27,7 +16,7 @@
   <% end %>
 </ul>
 
-<h3>Les séries populaires cette semaine</h3>
+<h3 id="top-tv">Les séries populaires cette semaine</h3>
 <ul>
   <% @popular_tv.each do |tv| %>
     <li><%= tv['name'] %></li>

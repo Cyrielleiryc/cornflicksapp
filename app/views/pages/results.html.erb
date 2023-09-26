@@ -1,0 +1,12 @@
+<div id="results">
+  <h3><%= @results.size %> <%= @results.size >=2 ? 'résultats' : 'résultat' %> pour "<%= params[:query] %>"</h3>
+  <ul>
+    <% @results.each do |result| %>
+      <% if result['media_type'] == "movie" %>
+        <li><%= link_to result['title'], movie_path(result['id']) %></li>
+      <% else %>
+        <li><%= link_to result['name'], tv_path(result['id']) %></li>
+      <% end %>
+    <% end %>
+  </ul>
+</div>

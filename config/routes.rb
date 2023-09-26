@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   # root "articles#index"
 
+  get 'results', to: 'pages#results'
   get 'movies/:id', to: 'pages#show_movie', as: :movie
   get 'tv/:id', to: 'pages#show_tv', as: :tv
   resources :groups, only: %i[index show new create]

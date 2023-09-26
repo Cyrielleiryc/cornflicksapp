@@ -8,9 +8,12 @@ class PagesController < ApplicationController
   skip_before_action :authenticate_user!, only: [ :home ]
 
   def home
-    @results = find_movie_or_tv(params[:query]) if params[:query]
     @popular_movies = find_popular_movies.take(5)
     @popular_tv = find_popular_tv.take(5)
+  end
+
+  def results
+    @results = find_movie_or_tv(params[:query])
   end
 
   def show_movie

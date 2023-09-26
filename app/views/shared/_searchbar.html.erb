@@ -1,5 +1,5 @@
 <div data-controller="searchbar">
-  <%= form_with url: root_path, method: :get do %>
+  <%= form_with url: '/results', method: :get do %>
     <%= text_field_tag :query,
     params[:query],
     placeholder: "Je recommande un film",
