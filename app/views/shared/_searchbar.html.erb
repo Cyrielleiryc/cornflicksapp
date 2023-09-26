@@ -1,3 +1,10 @@
-<%= form_with url: root_path, method: :get do %>
-  <%= text_field_tag :query, params[:query], placeholder: "Rechercher un film ou une série..."%>
-<% end %>
+<div data-controller="searchbar">
+  <%= form_with url: root_path, method: :get do %>
+    <%= text_field_tag :query,
+    params[:query],
+    placeholder: "Je recommande un film",
+    id: "searchbar",
+    class: "",
+    data: { action: "focus->searchbar#addActive" } %>
+  <% end %>
+</div>
