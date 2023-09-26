@@ -1,2 +1,24 @@
-<h1>Pages#home</h1>
-<p>Find me in app/views/pages/home.html.erb</p>
+<h1>CornFlicks</h1>
+<p>Trouver un film à recommander :</p>
+<%= render 'shared/searchbar' %>
+
+<h3>Résultats</h3>
+<ul>
+  <% @results.each do |result| %>
+    <li><%= result['title'] %></li>
+  <% end %>
+</ul>
+
+<h3>Les films populaires cette semaine</h3>
+<ul>
+  <% @popular_movies.each do |movie| %>
+    <li><%= movie['title'] %></li>
+  <% end %>
+</ul>
+
+<h3>Les séries populaires cette semaine</h3>
+<ul>
+  <% @popular_tv.each do |tv| %>
+    <li><%= tv['name'] %></li>
+  <% end %>
+</ul>

@@ -1,9 +1,4 @@
 class SubscriptionsController < ApplicationController
-  # def index
-  #   @subscriptions = policy_scope(Subscription)
-  #   @subscription = Subscription.new
-  # end
-
   def create
     @subscription = Subscription.new(subscription_params)
     authorize @subscription
@@ -16,17 +11,13 @@ class SubscriptionsController < ApplicationController
     end
   end
 
-  # def show
-  #   @subscription = policy_scope(Subscription).find(params[:id])
-  # end
-
   def destroy
     @subscription = Subscription.find(params[:id])
     authorize @subscription
     @subscription.destroy
     redirect_to groups_path, status: :see_other
   end
-  
+
   private
 
   def subscription_params
