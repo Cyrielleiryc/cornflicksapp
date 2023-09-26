@@ -24,7 +24,7 @@ puts "4 groups are now available!"
 puts "Creating random subscriptions..."
 User.all.each do |user|
   random_number = (1..4).to_a.sample
-  groups = Group.all.sample(random_number)
+  groups = Group.all.reject { |group| group.creator == user }.sample(random_number)
   groups.each { |group| Subscription.create!(user: user, group: group) }
 end
 puts "All finished!"
