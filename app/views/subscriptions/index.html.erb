@@ -1,0 +1,10 @@
+<h3>Tous mes groupes</h3>
+<ul>
+  <% @subscriptions.each do |subscription| %>
+    <li><%= link_to subscription.group.name, subscription_path(subscription) %></li>
+  <% end %>
+</ul>
+<h3>Créer un groupe</h3>
+<%= link_to "Créer un groupe", new_group_path %>
+<h3>Rejoindre un groupe</h3>
+<%= render 'form' %>

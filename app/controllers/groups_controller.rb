@@ -1,12 +1,12 @@
 class GroupsController < ApplicationController
-  def index
-    @groups = policy_scope(Group)
-  end
+  # def index
+  #   @groups = policy_scope(Group)
+  # end
 
-  def show
-    @group = Group.find(params[:id])
-  end
-  
+  # def show
+  #   @group = Group.find(params[:id])
+  # end
+
   def new
     @group = Group.new
     authorize @group
@@ -17,7 +17,7 @@ class GroupsController < ApplicationController
     @group.creator = current_user
     authorize @group
     if @group.save!
-      redirect_to groups_path
+      redirect_to subscriptions_path
     else
       render :new, status: :unprocessable_entity
     end
