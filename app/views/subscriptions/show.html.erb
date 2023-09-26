@@ -1,1 +1,7 @@
 <h2><%= @subscription.group.name %></h2>
+<%= @subscription.group.users.size %> personnes dans ce groupe :
+<% @subscription.group.users.each do |user| %>
+<%= user.username %>
+<% end %>
+<h3>Quitter ce groupe</h3>
+<%= link_to "Quitter ce groupe", subscription_path(@subscription) %>

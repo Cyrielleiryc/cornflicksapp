@@ -1,6 +1,10 @@
 <h3>Tous mes groupes</h3>
-<% @groups.each do |group| %>
-<%= link_to group.name, group_path(group) %>
-<% end %>
+<ul>
+  <% @groups.each do |group| %>
+    <li><%= link_to group.name, group_path(group) %></li>
+  <% end %>
+</ul>
 <h3>Créer un groupe</h3>
 <%= link_to "Créer un groupe", new_group_path %>
+<h3>Rejoindre un groupe</h3>
+<%= render 'subscriptions/form' %>

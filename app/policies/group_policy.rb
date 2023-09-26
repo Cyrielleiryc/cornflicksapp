@@ -13,8 +13,8 @@ class GroupPolicy < ApplicationPolicy
 
   class Scope < Scope
     # NOTE: Be explicit about which records you allow access to!
-    # def resolve
-    #   scope.where(creator: user)
-    # end
+    def resolve
+      scope.joins(:subscriptions).where(subscriptions: { user: user })
+    end
   end
 end

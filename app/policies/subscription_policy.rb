@@ -3,10 +3,14 @@ class SubscriptionPolicy < ApplicationPolicy
     true
   end
 
+  def destroy?
+    record.user == user
+  end
+
   class Scope < Scope
     # NOTE: Be explicit about which records you allow access to!
-    def resolve
-      scope.includes(:group).where(user: user)
-    end
+    # def resolve
+    #   scope.includes(:group).where(user: user)
+    # end
   end
 end

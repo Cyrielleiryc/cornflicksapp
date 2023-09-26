@@ -1,8 +1,8 @@
 class SubscriptionsController < ApplicationController
-  def index
-    @subscriptions = policy_scope(Subscription)
-    @subscription = Subscription.new
-  end
+  # def index
+  #   @subscriptions = policy_scope(Subscription)
+  #   @subscription = Subscription.new
+  # end
 
   def create
     @subscription = Subscription.new(subscription_params)
@@ -10,16 +10,23 @@ class SubscriptionsController < ApplicationController
     @subscription.user = current_user
     @subscription.group = Group.find_by(shareablecode: params[:subscription][:group_shareablecode])
     if @subscription.save!
-      redirect_to subscriptions_path
+      redirect_to groups_path
     else
       render 'index'
     end
   end
 
-  def show
-    @subscription = policy_scope(Subscription).find(params[:id])
-  end
+  # def show
+  #   @subscription = policy_scope(Subscription).find(params[:id])
+  # end
 
+  def destroy
+    @subscription = Subscription.find(params[:id])
+    authorize @subscription
+    @subscription.destroy
+    redirect_to groups_path, status: :see_other
+  end
+  
   private
 
   def subscription_params
