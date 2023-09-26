@@ -18,6 +18,9 @@ class PagesController < ApplicationController
 
   def show_movie
     @media = find_movie(params[:id])
+    @genres = []
+    @media['genres'].each { |genre| @genres << genre['name'].downcase }
+    @genres = @genres.join(', ')
   end
 
   def show_tv

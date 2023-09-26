@@ -1,0 +1,30 @@
+<div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(https://image.tmdb.org/t/p/w1280<%= @media['backdrop_path'] %>)">
+  <div class="contenu">
+    <h1><%= @media['title'] %></h1>
+    <p><%= @media['tagline'] %></p>
+    <%# bouton pour recommander ce film %>
+    <%= render 'shared/searchbar' %>
+  </div>
+</div>
+<div class="contenu">
+  <div class="media-info">
+    <%= image_tag "https://image.tmdb.org/t/p/w1280#{@media['poster_path']}"%>
+    <div class="media-text">
+    <p><strong><%= @media['title'] %></strong> (<%= @media['release_date'].split('-').first %>)</p>
+    <%# <p>Réalisé par <%= @media['title'] </p>%>
+    <p><%= @media['genres'].size >=2 ? 'Genres' : 'Genre' %> : <%= @genres %></p>
+    <p><i class="fa-solid fa-quote-left"></i> <%= @media['overview'] %> <i class="fa-solid fa-quote-right"></i></p>
+    <p>Durée : <%= @media['runtime'] %> min</p>
+    </div>
+    <div class="rating"><i class="fa-solid fa-star"></i> <%= @media['vote_average'].round(1) %></div>
+  </div>
+
+  <div class="media-info-supp">
+    <div class="media-reco">
+      <h3>4 recommandations</h3>
+    </div>
+    <div class="vod">
+      <h3>Où regarder ce film ?</h3>
+    </div>
+  </div>
+</div>
