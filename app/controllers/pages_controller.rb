@@ -8,8 +8,8 @@ class PagesController < ApplicationController
   skip_before_action :authenticate_user!, only: [ :home ]
 
   def home
-    @popular_movies = find_popular_movies.take(5)
-    @popular_tv = find_popular_tv.take(5)
+    @popular_movies = find_popular_movies.take(3)
+    @popular_tv = find_popular_tv.take(3)
   end
 
   def results

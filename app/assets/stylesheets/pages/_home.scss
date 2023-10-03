@@ -1,1 +1,19 @@
-// Specific CSS for your home-page
+.contenu  {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  grid-gap: 10px;
+  margin: 0 10vh 50px 10vh;
+}
+
+.contenu-left {
+  grid-column: 1;
+}
+
+#top {
+  grid-column: 2;
+}
+
+.top-media a {
+  text-decoration: none !important;
+  color: black;
+}

@@ -1,0 +1,14 @@
+<%= link_to "/#{media['media_type']}/#{media['id']}" do %>
+  <div class="card-product">
+    <img src="https://image.tmdb.org/t/p/original<%= media['backdrop_path'] %>" />
+    <div class="card-product-infos">
+      <% if media['media_type'] == "movie" %>
+        <h2><%= media['title'] %></h2>
+        <p><%= media['release_date'].split('-').first %></p>
+      <% else %>
+        <h2><%= media['name'] %></h2>
+        <p><%= media['first_air_date'].split('-').first %></p>
+      <% end %>
+    </div>
+  </div>
+<% end %>
