@@ -17,14 +17,17 @@ class PagesController < ApplicationController
   end
 
   def show_movie
-    @media = find_movie(params[:id])
-    @genres = []
-    @media['genres'].each { |genre| @genres << genre['name'].downcase }
-    @genres = @genres.join(', ')
+    @media = find_media(params[:id], 'movie')
+    @genres = genres(@media)
+    @credits = find_credits(params[:id], 'movie')
+    @providers = find_providers(params[:id], 'movie')
   end
 
   def show_tv
-    @media = find_tv(params[:id])
+    @media = find_media(params[:id], 'tv')
+    @genres = genres(@media)
+    @credits = find_credits(params[:id], 'tv')
+    @providers = find_providers(params[:id], 'tv')
   end
 
   private
@@ -75,8 +78,14 @@ class PagesController < ApplicationController
     return result['results']
   end
 
-  def find_movie(id)
-    url = URI("https://api.themoviedb.org/3/movie/#{id}?language=fr-FR")
+  def genres(media)
+    @genres = []
+    media['genres'].each { |genre| @genres << genre['name'].downcase }
+    return @genres.join(', ')
+  end
+
+  def find_media(id, type)
+    url = URI("https://api.themoviedb.org/3/#{type}/#{id}?language=fr-FR")
 
     http = Net::HTTP.new(url.host, url.port)
     http.use_ssl = true
@@ -90,8 +99,8 @@ class PagesController < ApplicationController
     return result
   end
 
-  def find_tv(id)
-    url = URI("https://api.themoviedb.org/3/tv/#{id}?language=fr-FR")
+  def find_credits(id, type)
+    url = URI("https://api.themoviedb.org/3/#{type}/#{id}/credits?language=fr-FR")
 
     http = Net::HTTP.new(url.host, url.port)
     http.use_ssl = true
@@ -102,6 +111,34 @@ class PagesController < ApplicationController
 
     response = http.request(request)
     result = JSON.parse(response.read_body)
-    return result
+    return { director: find_director(result['crew']), actors: find_actors(result['cast']) }
+  end
+
+  def find_director(crew)
+    director = crew.select { |member| member['job'] == "Director" }
+    return director.first.nil? ? "" : director.first['name']
+  end
+
+  def find_actors(cast)
+    actors = []
+    cast.each do |member|
+      actors << member['name']
+    end
+    return actors
+  end
+
+  def find_providers(id, type)
+    url = URI("https://api.themoviedb.org/3/#{type}/#{id}/watch/providers")
+
+    http = Net::HTTP.new(url.host, url.port)
+    http.use_ssl = true
+
+    request = Net::HTTP::Get.new(url)
+    request["accept"] = 'application/json'
+    request["Authorization"] = "Bearer #{ENV["TMDB_TOKEN"]}"
+
+    response = http.request(request)
+    result = JSON.parse(response.read_body)
+    return result['results']['FR']['flatrate']
   end
 end

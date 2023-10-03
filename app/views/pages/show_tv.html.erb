@@ -1,1 +1,41 @@
+<div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(https://image.tmdb.org/t/p/original<%= @media['backdrop_path'] %>)">
+  <div class="contenu">
+    <h1><%= @media['name'] %></h1>
+    <p><%#= @media['tagline'] %></p>
+    <%# bouton pour recommander ce film %>
+    <%= render 'shared/searchbar' %>
+  </div>
+</div>
+<div class="contenu">
+  <div class="media-info">
+    <%= image_tag "https://image.tmdb.org/t/p/original#{@media['poster_path']}" %>
+    <div class="media-text">
+      <p><strong><%= @media['name'] %></strong> (<%= @media['first_air_date'].split('-').first %>)</p>
+      <p><%= @media['number_of_episodes'] %> épisodes répartis sur <%= @media['number_of_seasons'] %> saisons</p>
+      <p>Avec <%= @credits[:actors].first(5).join(', ') %>...</p>
+      <p><%= @media['genres'].size >=2 ? 'Genres' : 'Genre' %> : <%= @genres %></p>
+      <p><i class="fa-solid fa-quote-left"></i> <%= @media['overview'] %> <i class="fa-solid fa-quote-right"></i></p>
+      <p>Durée moyenne d'un épisode : <%= @media['episode_run_time'].sum/@media['episode_run_time'].size %> min</p>
+    </div>
+    <div class="rating"><i class="fa-solid fa-star"></i> <%= @media['vote_average'].round(1) %></div>
+  </div>
 
+  <div class="media-info-supp">
+    <div class="media-reco">
+      <h3>4 recommandations</h3>
+    </div>
+
+      <div class="vod">
+      <h3>Où regarder ce film ?</h3>
+      <% if @providers %>
+        <div class="providers">
+          <% @providers.each do |provider| %>
+            <%= image_tag "https://image.tmdb.org/t/p/original#{provider['logo_path']}" %>
+          <% end %>
+        </div>
+      <% else %>
+        Indisponible sur les plateformes habituelles
+      <% end %>
+    </div>
+  </div>
+</div>
