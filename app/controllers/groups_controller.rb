@@ -18,7 +18,7 @@ class GroupsController < ApplicationController
     @group.creator = current_user
     authorize @group
     if @group.save!
-      redirect_to subscriptions_path
+      redirect_to groups_path
     else
       render :new, status: :unprocessable_entity
     end
@@ -27,6 +27,6 @@ class GroupsController < ApplicationController
   private
 
   def group_params
-    params.require(:group).permit(:name)
+    params.require(:group).permit(:name, :image_id)
   end
 end

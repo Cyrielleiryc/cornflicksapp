@@ -1,7 +1,9 @@
 <h2><%= @group.name %></h2>
+<%= image_tag @group.image.url %>
 <%= @group.users.size %> personnes dans ce groupe :
 <% @group.users.each do |user| %>
 <%= user.username %>
+<%= user_avatar(user.username) %>
 <% end %>
 <h3>Quitter ce groupe</h3>
 <%= link_to "Quitter ce groupe", subscription_path(Subscription.find_by(user: current_user, group: @group)), data: { turbo_method: :delete, turbo_confirm: "Confirmez-vous vouloir quitter le groupe #{@group.name} ?"} %>

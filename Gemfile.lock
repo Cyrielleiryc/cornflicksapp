@@ -124,6 +124,7 @@ GEM
     importmap-rails (1.2.1)
       actionpack (>= 6.0.0)
       railties (>= 6.0.0)
+    initials (0.4.3)
     io-console (0.6.0)
     irb (1.8.1)
       rdoc
@@ -269,6 +270,7 @@ DEPENDENCIES
   dotenv-rails
   font-awesome-sass (~> 6.1)
   importmap-rails
+  initials
   jbuilder
   pg (~> 1.1)
   puma (~> 5.0)

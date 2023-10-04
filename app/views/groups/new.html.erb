@@ -1,5 +1,6 @@
 <h2>Créer un groupe</h2>
 <%= simple_form_for(@group) do |f| %>
   <%= f.input :name %>
+  <%= f.input :image_id, as: :radio_buttons, collection: Image.all.map { |img| [image_tag(img.url, size: "400x300").html_safe, img.id] } %>
   <%= f.submit %>
 <% end %>

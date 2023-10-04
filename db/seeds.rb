@@ -1,3 +1,5 @@
+require_relative 'seeds_for_images'
+
 # USERS
 puts "Destroying all users..."
 User.destroy_all
@@ -9,15 +11,20 @@ User.create!(username: "Perrine", email: "perrine@gmail.com", password: "123456"
 User.create!(username: "Paul", email: "paul@gmail.com", password: "123456")
 puts "4 users are now alive!"
 
+# IMAGES
+puts "Deleting then creating images for groups..."
+Image.destroy_all
+create_group_images
+
 # GROUPS
 puts "Destroying all groups..."
 Group.destroy_all
 puts "Done!"
 puts "Creating groups..."
-Group.create!(name: "un", creator: User.all.sample)
-Group.create!(name: "deux", creator: User.all.sample)
-Group.create!(name: "trois", creator: User.all.sample)
-Group.create!(name: "quatre", creator: User.all.sample)
+Group.create!(name: "un", creator: User.all.sample, image: Image.all.sample)
+Group.create!(name: "deux", creator: User.all.sample, image: Image.all.sample)
+Group.create!(name: "trois", creator: User.all.sample, image: Image.all.sample)
+Group.create!(name: "quatre", creator: User.all.sample, image: Image.all.sample)
 puts "4 groups are now available!"
 
 # SUBSCRIPTIONS

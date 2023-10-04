@@ -78,4 +78,8 @@ group :test do
 
 end
 
+# For authorization
 gem "pundit", "~> 2.3"
+
+# To make colourful avatar from user's initials
+gem 'initials'
