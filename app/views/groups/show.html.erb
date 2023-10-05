@@ -1,9 +1,15 @@
-<h2><%= @group.name %></h2>
-<%= image_tag @group.image.url %>
-<%= @group.users.size %> personnes dans ce groupe :
-<% @group.users.each do |user| %>
-<%= user.username %>
-<%= user_avatar(user.username) %>
-<% end %>
+<div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(<%= @group.image.url %>)">
+  <div class="contenu">
+    <h1><%= @group.name %></h1>
+    <p><%=@group.users.size %> personnes</p>
+    <%# bouton pour inviter à rejoindre le groupe %>
+  </div>
+</div>
+<div class="contenu">
+
+
+<%#= user_avatar(user.username) %>
+
 <h3>Quitter ce groupe</h3>
 <%= link_to "Quitter ce groupe", subscription_path(Subscription.find_by(user: current_user, group: @group)), data: { turbo_method: :delete, turbo_confirm: "Confirmez-vous vouloir quitter le groupe #{@group.name} ?"} %>
+</div>
