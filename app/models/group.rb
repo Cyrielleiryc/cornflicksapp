@@ -5,6 +5,7 @@ class Group < ApplicationRecord
   belongs_to :image
 
   validates :name, presence: true
+  validates :name, length: { maximum: 20 }
 
   after_create :subscribe_creator
   after_commit :generate_shareablecode, on: %i[create]
