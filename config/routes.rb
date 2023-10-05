@@ -11,4 +11,5 @@ Rails.application.routes.draw do
   get 'tv/:id', to: 'pages#show_tv', as: :tv
   resources :groups, only: %i[index show new create]
   resources :subscriptions, only: %i[create destroy]
+  resources :recommendations, only: %i[create destroy]
 end

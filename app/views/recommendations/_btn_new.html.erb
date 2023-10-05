@@ -1,0 +1,29 @@
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#newRecommendationModal">
+  Je recommande ce film !
+</button>
+
+<!-- Modal for new recommendation -->
+<div class="modal fade" id="newRecommendationModal" tabindex="-1" aria-labelledby="newRecommendationModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="newRecommendationModalLabel">Je recommande ce film</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <%= simple_form_for(@recommendation) do |f| %>
+          <%= f.input :comment %>
+          <%= f.input :media_type, input_html: { value: @credits[:media_type] }, wrapper_html: { class: "d-none" } %>
+          <%= f.input :media_id, input_html: { value: @media['id'] }, wrapper_html: { class: "d-none" } %>
+          <%= f.input :title, input_html: { value: @media['title'] }, wrapper_html: { class: "d-none" } %>
+          <%= f.input :group_id, as: :radio_buttons, collection: Group.all.map { |group| [group.name, group.id] } %>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <%= f.button :submit, "Je recommande ce film", class: "btn btn-primary" %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

@@ -21,6 +21,7 @@ class PagesController < ApplicationController
     @genres = genres(@media)
     @credits = find_credits(params[:id], 'movie')
     @providers = find_providers(params[:id], 'movie')
+    @recommendation = Recommendation.new
   end
 
   def show_tv
@@ -28,6 +29,7 @@ class PagesController < ApplicationController
     @genres = genres(@media)
     @credits = find_credits(params[:id], 'tv')
     @providers = find_providers(params[:id], 'tv')
+    @recommendation = Recommendation.new
   end
 
   private
@@ -111,7 +113,7 @@ class PagesController < ApplicationController
 
     response = http.request(request)
     result = JSON.parse(response.read_body)
-    return { director: find_director(result['crew']), actors: find_actors(result['cast']) }
+    return { director: find_director(result['crew']), actors: find_actors(result['cast']), media_type: type }
   end
 
   def find_director(crew)

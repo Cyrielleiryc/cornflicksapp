@@ -7,10 +7,8 @@ class GroupsController < ApplicationController
 
   def show
     @group = policy_scope(Group).find(params[:id])
+    @recommendations = Recommendation.where(group: @group)
   end
-
-  # def new
-  # end
 
   def create
     @group = Group.new(group_params)
