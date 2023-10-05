@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_10_04_171504) do
+ActiveRecord::Schema[7.0].define(version: 2023_10_05_135308) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -30,6 +30,18 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_04_171504) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "name"
+  end
+
+  create_table "recommendations", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "group_id", null: false
+    t.integer "media_id"
+    t.string "media_type"
+    t.text "comment"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["group_id"], name: "index_recommendations_on_group_id"
+    t.index ["user_id"], name: "index_recommendations_on_user_id"
   end
 
   create_table "subscriptions", force: :cascade do |t|
@@ -56,6 +68,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_04_171504) do
 
   add_foreign_key "groups", "images"
   add_foreign_key "groups", "users", column: "creator_id"
+  add_foreign_key "recommendations", "groups"
+  add_foreign_key "recommendations", "users"
   add_foreign_key "subscriptions", "groups"
   add_foreign_key "subscriptions", "users"
 end

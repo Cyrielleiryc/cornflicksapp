@@ -1,6 +1,7 @@
 class Group < ApplicationRecord
   has_many :subscriptions, dependent: :destroy
   has_many :users, through: :subscriptions
+  has_many :recommendations, dependent: :destroy
   belongs_to :creator, class_name: "User"
   belongs_to :image
 
