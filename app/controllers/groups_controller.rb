@@ -2,16 +2,15 @@ class GroupsController < ApplicationController
   def index
     @groups = policy_scope(Group)
     @subscription = Subscription.new
+    @group = Group.new
   end
 
   def show
     @group = policy_scope(Group).find(params[:id])
   end
 
-  def new
-    @group = Group.new
-    authorize @group
-  end
+  # def new
+  # end
 
   def create
     @group = Group.new(group_params)

@@ -1,17 +1,19 @@
-<div id="results">
-  <h3><%= @results.size %> <%= @results.size >=2 ? 'résultats' : 'résultat' %> pour "<%= params[:query] %>"</h3>
-  <div class="results-contenu">
-    <% @results.sort_by { |r| -r['popularity'] }.each do |result| %>
-      <div class="position-relative">
-        <%= render 'top_media_card', media: result %>
-        <div class="result-type">
-          <% if result['media_type'] == "tv" %>
-            <i class="fa-solid fa-t"></i><i class="fa-solid fa-v"></i>
-          <% else %>
-            <i class="fa-solid fa-film"></i>
-          <% end %>
+<div class="contenu">
+  <div id="results">
+    <h3><%= @results.size %> <%= @results.size >=2 ? 'résultats' : 'résultat' %> pour "<%= params[:query] %>"</h3>
+    <div class="results-contenu">
+      <% @results.sort_by { |r| -r['popularity'] }.each do |result| %>
+        <div class="position-relative">
+          <%= render 'top_media_card', media: result %>
+          <div class="result-type">
+            <% if result['media_type'] == "tv" %>
+              <i class="fa-solid fa-t"></i><i class="fa-solid fa-v"></i>
+            <% else %>
+              <i class="fa-solid fa-film"></i>
+            <% end %>
+          </div>
         </div>
-      </div>
-    <% end %>
+      <% end %>
+    </div>
   </div>
 </div>

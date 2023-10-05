@@ -1,5 +1,5 @@
 <div class="banner" style="background-image: url(<%= image_path("videoproj.jpg") %>)">
-  <div class="banner-contenu">
+  <div class="contenu">
     <h1>CornFlicks</h1>
     <p>Des films à déguster, des goûts à partager !</p>
     <%= render 'shared/searchbar' %>
@@ -7,27 +7,29 @@
 </div>
 
 <div class="contenu">
-  <div class="contenu-left">
-    <%# "machin vous recommande ... " %>
+  <div id="home">
+    <div class="contenu-left">
+      <%# "machin vous recommande ... " %>
 
-    <%# films à voir selon vos proches %>
+      <%# films à voir selon vos proches %>
 
-    <%# séries à voir selon vos proches %>
-  </div>
-
-  <div id="top">
-    <div class="top-media">
-      <h3>Les films populaires</h3>
-      <% @popular_movies.each do |movie| %>
-        <%= render 'top_media_card', media: movie %>
-      <% end %>
+      <%# séries à voir selon vos proches %>
     </div>
 
-    <div class="top-media">
-      <h3>Les séries populaires</h3>
-      <% @popular_tv.each do |tv| %>
-        <%= render 'top_media_card', media: tv %>
-      <% end %>
+    <div id="top">
+      <div class="top-media">
+        <h3>Les films populaires</h3>
+        <% @popular_movies.each do |movie| %>
+          <%= render 'top_media_card', media: movie %>
+        <% end %>
+      </div>
+
+      <div class="top-media">
+        <h3>Les séries populaires</h3>
+        <% @popular_tv.each do |tv| %>
+          <%= render 'top_media_card', media: tv %>
+        <% end %>
+      </div>
     </div>
   </div>
 </div>
