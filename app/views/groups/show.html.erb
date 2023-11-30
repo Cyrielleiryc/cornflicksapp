@@ -1,4 +1,5 @@
-<div class="banner group-banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(<%= @group.image.url %>)">
+<%# <div class="banner group-banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(<%= @group.image.url %>
+<div class="banner group-banner">
   <div class="contenu">
     <h1><%= @group.name %></h1>
     <% @group.users.all.each do |user| %>

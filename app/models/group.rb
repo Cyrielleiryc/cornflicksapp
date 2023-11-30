@@ -3,7 +3,6 @@ class Group < ApplicationRecord
   has_many :users, through: :subscriptions
   has_many :recommendations, dependent: :destroy
   belongs_to :creator, class_name: "User"
-  belongs_to :image
 
   validates :name, presence: true
   validates :name, length: { maximum: 20 }
