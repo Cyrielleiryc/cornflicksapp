@@ -22,6 +22,7 @@ Ce site permet de regrouper et dynamiser les recommandations de films et de sér
 - Faire le front-end des formulaires (connexion, créer un groupe, recommander un média...)
 - Développer la page des groupes où les recommandations sont listées
 - Débugger lorsque l'API retourne des informations vides
+- Créer des tests unitaires
 
 ## Utilisation d'une API
 
